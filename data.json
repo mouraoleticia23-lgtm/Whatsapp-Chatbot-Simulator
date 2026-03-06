@@ -1,0 +1,12 @@
+{
+  "products": [
+    "Laptop",
+    "Headphones",
+    "Keyboard"
+  ],
+  "orders": {
+    "123": "Enviado",
+    "456": "Processando",
+    "789": "Entregue"
+  }
+}
