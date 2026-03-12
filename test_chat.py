@@ -1,8 +1,8 @@
 # Teste simples para verificar a resposta do chatbot
 
-from chatbot import get_response
+from app.chatbot import get_response
 
-phone = "551199999999"
+phone = "5511999999999"
 
 print("Chat iniciado. Digite 'sair' para encerrar.\n")
 

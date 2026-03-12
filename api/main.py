@@ -1,10 +1,16 @@
+# main.py
+# É o ponto de entrada para a aplicação FastAPI - define as rotas e a lógica para processar as mensagens do chatbot.
+
 # Importa as bibliotecas necessárias
 from fastapi import FastAPI
 from pydantic import BaseModel
-from chatbot import get_response
+from app.chatbot import get_response
 
 # Cria a aplicação FastAPI
-app = FastAPI()
+app = FastAPI(
+    title="WhatsApp Chatbot Simulator",
+    version="1.0"
+)
 
 # Define o modelo de dados para a mensagem recebida
 class Message(BaseModel):
