@@ -63,9 +63,7 @@ app/
 data/
 └── data.json          # Dados de produtos e pedidos
 
-tests/
-└── test_chat.py       # Simulador de conversa no terminal
-
+test_chat.py           # Simulador de conversa no terminal
 README.md
 requirements.txt
 ```
