@@ -4,14 +4,18 @@ Um simulador simples de chatbot inspirado em fluxos de atendimento via WhatsApp,
 
 Este projeto demonstra a criação de um fluxo básico de atendimento automatizado utilizando menus, controle de usuários e consulta de dados em JSON.
 
+O chatbot também pode ser acessado através de uma API construída com FastAPI, permitindo integração com outras aplicações.
+
 ---
 
 # Tecnologias Utilizadas
 
 - Python
+- FastAPI
+- API REST
 - JSON
+- Pydantic
 - Lógica de fluxo de chatbot
-- Simulação de atendimento automatizado
 
 ---
 
@@ -22,8 +26,9 @@ Este projeto foi desenvolvido para demonstrar conceitos de:
 - lógica de programação
 - criação de chatbots baseados em menu
 - gerenciamento de estado de conversas
+- construção de APIs com FastAPI
 - manipulação de dados em JSON
-- integração e automação de atendimento via WhatsApp
+- simulação de automação de atendimento
 
 ---
 
@@ -36,6 +41,8 @@ Este projeto foi desenvolvido para demonstrar conceitos de:
 - Simulação de atendimento de suporte
 - Controle de estado da conversa por usuário
 - Reinício de conversa com comando `reset`
+- API REST para integração com outros sistemas
+- Simulador de conversa via terminal
 
 ---
 
@@ -44,10 +51,23 @@ Este projeto foi desenvolvido para demonstrar conceitos de:
 ```
 Whatsapp-Chatbot-Simulator
 
-chatbot.py       # Lógica principal do chatbot
-test_chat.py     # Simulador de conversa no terminal
-data.json        # Dados de produtos e pedidos
-README.md        # Documentação do projeto
+api/
+└── main.py            # Ponto de entrada da API FastAPI
+
+app/
+├── __init__.py
+├── chatbot.py         # Lógica principal do chatbot
+├── data_loader.py     # Carregamento dos dados do JSON
+└── states.py          # Definição dos estados da conversa
+
+data/
+└── data.json          # Dados de produtos e pedidos
+
+tests/
+└── test_chat.py       # Simulador de conversa no terminal
+
+README.md
+requirements.txt
 ```
 
 ---
@@ -66,33 +86,71 @@ git clone https://github.com/seu-usuario/Whatsapp-Chatbot-Simulator.git
 cd Whatsapp-Chatbot-Simulator
 ```
 
-### 3. Executar o simulador
+### 3. Instalar as dependências
 
 ```bash
-python test_chat.py
+pip install -r requirements.txt
 ```
 
 ---
 
-# Exemplo de Conversa
+# Executar o Simulador no Terminal
+
+Para testar o chatbot diretamente no terminal:
+
+```bash
+python tests/test_chat.py
+```
+
+Isso abrirá um chat onde você pode interagir com o bot.
+
+---
+
+# Executar a API
+
+Para iniciar o servidor FastAPI:
+
+```bash
+python -m uvicorn api.main:app --reload
+```
+
+A API estará disponível em:
 
 ```
-Bot: Bem-vindo!
+http://127.0.0.1:8000
+```
 
-Escolha uma opção:
+Documentação automática da API:
 
-1 - Ver produtos
-2 - Status do pedido
-3 - Falar com suporte
+```
+http://127.0.0.1:8000/docs
+```
 
-You: 1
+---
 
-Bot: Nossos produtos:
+# Exemplo de Requisição
 
-- Laptop
-- Headphones
+Endpoint:
 
-Digite 'menu' para voltar.
+```
+POST /chat
+```
+
+Body da requisição:
+
+```json
+{
+  "phone": "5511999999999",
+  "message": "1"
+}
+```
+
+Resposta:
+
+```json
+{
+  "message": "Nossos produtos:\n\n- Laptop\n- Headphones\n- Keyboard"
+}
 ```
 
 ---
@@ -117,36 +175,33 @@ Bot mostra menu de opções
 ↓  
 Usuário escolhe uma opção  
 ↓  
-Bot responde de acordo com a escolha  
+Bot responde de acordo com a escolha
 
 ---
 
-# Estrutura do JSON
+# Estrutura dos Dados
 
-Arquivo `data.json`:
+Arquivo `data/data.json`:
 
 ```json
 {
   "products": [
     "Laptop",
-    "Headphones"
+    "Headphones",
+    "Keyboard"
   ],
   "orders": {
-    "123": "Em preparação",
-    "456": "Enviado",
+    "123": "Enviado",
+    "456": "Processando",
     "789": "Entregue"
   }
 }
 ```
 
----
+## Possíveis Melhorias
 
-# Possíveis Melhorias
-
-- Integração com API do WhatsApp
-- Armazenamento de informações em banco de dados
-- Interface web para simulação do chat
-- Logs de conversas
-- Integração com IA
-
----
+- Integração com uma API de WhatsApp para permitir interações reais com usuários.
+- Substituição do arquivo JSON por um banco de dados.
+- Implementação de logs de conversas para monitoramento e análise das interações.
+- Criação de uma interface web para simulação do chat no navegador.
+- Adição de testes automatizados para garantir o funcionamento do fluxo do chatbot.
