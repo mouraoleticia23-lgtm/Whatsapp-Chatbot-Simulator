@@ -42,7 +42,7 @@ Este projeto foi desenvolvido para demonstrar conceitos de:
 - Controle de estado da conversa por usuário
 - Reinício de conversa com comando `reset`
 - API REST para integração com outros sistemas
-- Simulador de conversa via terminal
+- Testes automatizados para validar o fluxo do chatbot
 
 ---
 
@@ -55,17 +55,22 @@ api/
 └── main.py            # Ponto de entrada da API FastAPI
 
 app/
-├── __init__.py
 ├── chatbot.py         # Lógica principal do chatbot
+├── config.py          # Configurações do projeto
 ├── data_loader.py     # Carregamento dos dados do JSON
+├── logger.py          # Configuração de logs
 └── states.py          # Definição dos estados da conversa
 
 data/
 └── data.json          # Dados de produtos e pedidos
 
-test_chat.py           # Simulador de conversa no terminal
-README.md
-requirements.txt
+tests/
+├── test_chat.py       # Teste de funcionamento do chatbot
+
+cli.py                 # Teste pelo terminal
+pytest.ini             # Configurações do Pytest
+README.md              # Documentação
+requirements.txt       # Dependências do projeto
 ```
 
 ---
