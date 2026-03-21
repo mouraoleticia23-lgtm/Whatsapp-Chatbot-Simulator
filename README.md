@@ -80,7 +80,7 @@ requirements.txt       # Dependências do projeto
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/Whatsapp-Chatbot-Simulator.git
+git clone https://github.com/mouraoleticia23-lgtm/Whatsapp-Chatbot-Simulator.git
 ```
 
 ### 2. Entrar na pasta do projeto
